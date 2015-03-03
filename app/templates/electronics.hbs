@@ -1,0 +1,29 @@
+<div class="col-sm-3">
+  <div class="panel-group" id="accordion">
+    {{#each electronic in model}}
+      <div class="panel">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" {{bind-attr href="electronic.url"}}>
+              {{electronic.name}}
+            </a>
+          </h4>
+        </div>
+        <div {{bind-attr id="electronic.panelId"}} class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    {{#each device in electronic.devices}}
+                        <li>
+                            {{link-to device.name 'devices.show' electronic.id device.id}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div class="col-sm-9">
+  {{outlet}}
+</div>
